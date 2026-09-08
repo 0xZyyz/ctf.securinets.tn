@@ -26,7 +26,7 @@ const MEMBERS = [
     role: "Binary Exploitation",
     discord: "buddurid",
     links: [
-      { href: "https://buddurid.me", label: "website", icon: Globe },
+      { href: "https://blog.buddurid.tech", label: "blog", icon: Globe },
       { href: "https://github.com/buddurid", label: "GitHub", icon: Github },
       { href: "https://www.linkedin.com/in/bahae-bahrini/", label: "LinkedIn", icon: Linkedin },
     ],
@@ -140,7 +140,7 @@ const MEMBERS = [
     role: "Digital Forensics",
     discord: "Zyyz",
     links: [
-      { href: "https://zyyz2.github.io/", label: "blog", icon: Globe },
+      { href: "https://0xzyyz.github.io", label: "blog", icon: Globe },
       { href: "https://www.linkedin.com/in/azizrahmouni/", label: "LinkedIn", icon: Linkedin },
     ],
   },
