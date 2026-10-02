@@ -4,7 +4,7 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import Countdown from "@/components/Countdown";
 import EventsMarquee from "@/components/EventsMarquee";
 import { Link } from "react-router-dom";
-import { BarChart3, Calendar as CalendarIcon, Home, Shield, Globe, Images, Users, Mail, LayoutGrid, Trophy } from "lucide-react";
+import { BarChart3, Calendar as CalendarIcon, Clock as ClockIcon, Home, Shield, Globe, Images, Users, Mail, LayoutGrid, Trophy } from "lucide-react";
 
 const EXPLORE = [
   { to: "/", label: "Home", description: "The front page of this year's edition.", icon: Home },
@@ -17,7 +17,8 @@ const EXPLORE = [
   { to: "/contact", label: "Contact", description: "Reach us by email or on Discord.", icon: Mail },
 ];
 
-const QUALS_TARGET = new Date('2026-10-03T09:00:00Z');
+const QUALS_TARGET = new Date('2026-10-17T09:00:00Z');
+const QUALS_DURATION_HOURS = 36; // Oct 17, 09:00 UTC -> Oct 18, 21:00 UTC
 
 const Index = () => {
 
@@ -42,12 +43,12 @@ const Index = () => {
           <div className="mt-10 w-full max-w-md shrink-0 animate-enter">
             <Countdown
               targetDate={QUALS_TARGET}
-              durationHours={36}
-              subtitle="OCT 3, 2026, 10:00 UTC+1"
+              durationHours={QUALS_DURATION_HOURS}
               className="flex flex-col items-center"
             />
-            <div className="mt-3 flex animate-enter justify-center text-sm text-muted-foreground drop-shadow-sm">
-              <div className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-primary" /><span>Sat, Oct 3, 2026 • Online</span></div>
+            <div className="mt-3 flex animate-enter flex-col items-center gap-1 text-sm text-muted-foreground drop-shadow-sm">
+              <span className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-primary" /><span>Oct 17, 09:00 UTC → Oct 18, 21:00 UTC</span></span>
+              <span className="flex items-center gap-2"><ClockIcon className="h-4 w-4 text-primary" /><span>Online</span></span>
             </div>
           </div>
         </div>

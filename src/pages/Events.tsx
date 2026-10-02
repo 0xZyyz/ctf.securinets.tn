@@ -6,8 +6,8 @@ import coverImage from "@/assets/hero-bg.jpg";
 import { Star, Clock, ExternalLink, MapPin, Users } from "lucide-react";
 
 const QUAL = {
-  start: new Date(2026, 9, 3, 10, 0), // Oct 3, 10:00 UTC+1
-  end: new Date(2026, 9, 4, 22, 0), // Oct 4, 22:00 UTC+1
+  start: new Date("2026-10-17T09:00:00Z"), // Sat, Oct 17, 09:00 UTC
+  end: new Date("2026-10-18T21:00:00Z"), // Sun, Oct 18, 21:00 UTC
 };
 
 const fmt = (d: Date) =>
@@ -16,7 +16,8 @@ const fmt = (d: Date) =>
     day: "numeric",
     hour: "numeric",
     minute: "2-digit",
-    hour12: true,
+    hour12: false,
+    timeZone: "UTC",
   });
 
 const pad = (n: number) => Math.max(0, n).toString().padStart(2, "0");
@@ -106,8 +107,8 @@ const Events = () => {
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
                   <p className="text-sm font-medium text-primary">
-                    {QUAL.start.toLocaleString("en-US", { weekday: "short", month: "short", day: "numeric" })} –{" "}
-                    {QUAL.end.toLocaleString("en-US", { weekday: "short", month: "short", day: "numeric" })}
+                    {QUAL.start.toLocaleString("en-US", { weekday: "short", month: "short", day: "numeric", timeZone: "UTC" })} –{" "}
+                    {QUAL.end.toLocaleString("en-US", { weekday: "short", month: "short", day: "numeric", timeZone: "UTC" })}
                   </p>
                   <h2 className="mt-1.5 font-display text-xl font-semibold leading-tight tracking-tight">
                     Securinets CTF Quals 2026
@@ -123,7 +124,7 @@ const Events = () => {
               <dl className="mt-4 space-y-1.5 text-xs text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <MapPin className="h-3.5 w-3.5 shrink-0 text-primary" />
-                  <span>Online — {fmt(QUAL.start)} → {fmt(QUAL.end)} (UTC+1)</span>
+                  <span>Online — {fmt(QUAL.start)} → {fmt(QUAL.end)} UTC</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="h-3.5 w-3.5 shrink-0 text-primary" />
@@ -157,7 +158,7 @@ const Events = () => {
                       </span>
                     </TooltipTrigger>
                     <TooltipContent side="top" className="max-w-[240px] text-center">
-                      The arena opens <span className="font-semibold text-primary">Oct 3, 10:00 UTC+1</span>. See you there.
+                      The arena opens <span className="font-semibold text-primary">Oct 17, 09:00 UTC</span>. See you there.
                     </TooltipContent>
                   </Tooltip>
                 </div>

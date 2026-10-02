@@ -212,9 +212,144 @@ All colors MUST be HSL.
 
     .animate-float,
     .animate-pan-slow,
-    .countdown-number {
+    .countdown-number,
+    .flash-hl,
+    .flash-hl::before,
+    .flash-hl::after,
+    .flash-hl > span[aria-hidden] {
       animation: none !important;
     }
+  }
+
+  /* Timeline block highlight, triggered from the calendar legend.
+     Every layer peaks at the same moment so one pass reads as one pulse. */
+  @keyframes flash-body {
+
+    0% {
+      background-color: hsl(var(--primary) / 0);
+    }
+
+    15% {
+      background-color: hsl(var(--primary) / 0.3);
+    }
+
+    45% {
+      background-color: hsl(var(--primary) / 0.12);
+    }
+
+    100% {
+      background-color: hsl(var(--primary) / 0);
+    }
+  }
+
+  /* Band is clear of the block by 70%, leaving a clean decay tail */
+  @keyframes flash-scan {
+    0% {
+      transform: translateX(-130%);
+      opacity: 0;
+    }
+
+    8% {
+      opacity: 1;
+    }
+
+    45% {
+      transform: translateX(150%);
+      opacity: 1;
+    }
+
+    62% {
+      transform: translateX(360%);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateX(360%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes flash-dot {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 hsl(var(--primary) / 0);
+    }
+
+    15% {
+      box-shadow: 0 0 0 4px hsl(var(--primary) / 0.22), 0 0 16px 3px hsl(var(--primary) / 0.9);
+    }
+  }
+
+  @keyframes flash-rule {
+    0% {
+      transform: scaleY(0);
+      opacity: 0;
+    }
+
+    15% {
+      opacity: 1;
+      transform: scaleY(0.35);
+    }
+
+    45% {
+      transform: scaleY(1);
+    }
+
+    70% {
+      opacity: 0;
+      transform: scaleY(1);
+    }
+
+    100% {
+      opacity: 0;
+      transform: scaleY(1);
+    }
+  }
+
+  .flash-hl {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    animation: flash-body 0.55s cubic-bezier(0.4, 0, 0.6, 1) 2;
+  }
+
+  /* Bright rule that draws down the block's left edge */
+  .flash-hl::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent, hsl(var(--primary)) 30%, hsl(var(--primary)) 70%, transparent);
+    box-shadow: 0 0 12px 1px hsl(var(--primary) / 0.95);
+    transform-origin: top;
+    animation: flash-rule 0.55s cubic-bezier(0.4, 0, 0.6, 1) 2;
+  }
+
+  .flash-hl::after {
+    content: '';
+    position: absolute;
+    top: -10%;
+    bottom: -10%;
+    left: 0;
+    width: 34%;
+    pointer-events: none;
+    background: linear-gradient(90deg,
+        transparent,
+        hsl(var(--primary) / 0.1),
+        hsl(var(--primary) / 0.55),
+        hsl(var(--primary) / 1) 62%,
+        hsl(var(--primary) / 0.55),
+        hsl(var(--primary) / 0.1),
+        transparent);
+    box-shadow: 0 0 22px 2px hsl(var(--primary) / 0.5);
+    animation: flash-scan 0.55s cubic-bezier(0.4, 0, 0.6, 1) 2;
+  }
+
+  .flash-hl > span[aria-hidden] {
+    animation: flash-dot 0.55s cubic-bezier(0.4, 0, 0.6, 1) 2;
   }
 
   /* Intro splash */

@@ -140,7 +140,7 @@ const MEMBERS = [
     role: "Digital Forensics",
     discord: "Zyyz",
     links: [
-      { href: "https://0xzyyz.github.io", label: "blog", icon: Globe },
+      { href: "https://0xzyyz.tech", label: "blog", icon: Globe },
       { href: "https://www.linkedin.com/in/azizrahmouni/", label: "LinkedIn", icon: Linkedin },
     ],
   },
